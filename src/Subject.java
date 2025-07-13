@@ -1,22 +1,20 @@
 import java.util.ArrayList;
 
 interface subjectInterface {
-    void calculateResult(double passingScore, Student student);
+    Result calculateResult(double passingScore, Student student, double studentScore);
 
 }
 
 public class Subject implements subjectInterface {
     public static int subjectCounter;
-    private String subjectName;
+    private final String subjectName;
     private ArrayList<Student> students;
     private double passingScore;
     private double studentScore;
-    private boolean hasLab = false;
 
-    public Subject(String subjectName, boolean hasLab) {
+    public Subject(String subjectName, boolean isLab) {
         this.subjectName = subjectName;
-        this.hasLab = hasLab;
-        if (!hasLab) {
+        if (!isLab) {
             subjectCounter++;
         }
     }
@@ -27,6 +25,7 @@ public class Subject implements subjectInterface {
 
     public void enrollStudent(Student student) {
         students.add(student);
+        student.addSubject(this);
     }
 
     public double getPassingScore() {
@@ -37,9 +36,10 @@ public class Subject implements subjectInterface {
         this.passingScore = passingScore;
     }
 
-    public void calculateResult(double passingScore, Student student, double studentScore) {
+    @Override
+    public Result calculateResult(double passingScore, Student student, double studentScore) {
         boolean displayResult = studentScore >= passingScore;
-        Result result = new Result(student.studentID, subjectName, student.studentName, studentScore, displayResult);
+        return new Result(student.studentID, subjectName, student.studentName, studentScore, displayResult);
 
     }
 }

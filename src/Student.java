@@ -18,6 +18,7 @@ public class Student {
 
     public void addSubject(Subject subject) {
         this.subjects.add(subject);
+        subject.enrollStudent(this);
     }
 
     public void addResult(Result result) {
