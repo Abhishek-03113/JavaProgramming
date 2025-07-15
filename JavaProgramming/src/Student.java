@@ -1,14 +1,18 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Student {
     public int studentID;
     public String studentName;
-    private ArrayList<Subject> subjects;
-    private ArrayList<Result> results;
+    private final ArrayList<Subject> subjects;
+    private HashMap<Subject, Result> results;
+
 
     public Student(int studentID, String studentName) {
         this.studentID = studentID;
         this.studentName = studentName;
+        this.subjects = new ArrayList<>();
+        this.results = new HashMap<>();
     }
 
 
@@ -18,15 +22,10 @@ public class Student {
 
     public void addSubject(Subject subject) {
         this.subjects.add(subject);
-        subject.enrollStudent(this);
     }
 
-    public void addResult(Result result) {
-        this.results.add(result);
-    }
-
-    public ArrayList<Result> getResults() {
-        return results;
+    public void addResults(Subject subject, Result result) {
+        this.results.put(subject, result);
     }
 
 }
