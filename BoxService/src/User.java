@@ -1,21 +1,14 @@
-//import java.util.ArrayList;
-//
-//public class User {
-//    int userId;
-//    String userName;
-//    ArrayList<Subscription> subscriptions;
-//
-//    public User(int userId, String userName) {
-//        this.userId = userId;
-//        this.userName = userName;
-//    }
-//
-//    public void AddSubscription(Subscription subscription) {
-//        subscriptions.add(subscription);
-//    }
-//
-//    public void RemoveSubscription(Subscription subscription) {
-//        subscriptions.remove(subscription);
-//    }
-//
-//}
+import java.util.*;
+
+
+public class User {
+    private String name;
+    private String username;
+    private Set<Subscription> subscriptions;
+
+    public User(String name, String username) {
+        this.name = name;
+        this.username = username;
+    }
+}
+
