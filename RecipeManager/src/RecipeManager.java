@@ -4,7 +4,7 @@ import java.util.Set;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class RecipeManager {
-    private Set<abstractRecipe> recipes;
+    private final Set<abstractRecipe> recipes;
     Search searcher;
     Recommendation recommender;
 
