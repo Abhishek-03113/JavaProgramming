@@ -3,23 +3,17 @@ public abstract class Class {
     private int health;
     private int attack;
     private int defense;
-    private final Player player;
     private int speed;
     private int power;
     private Weapon weapon;
 
-    public Class(Player player, String className, int health, int attack, int defense, int power, int speed, Weapon weapon) {
+    public Class(String className, int health, int attack, int defense, int power, int speed, Weapon weapon) {
         this.className = className;
         this.health = health;
         this.attack = attack;
         this.defense = defense;
         this.power = power;
         this.weapon = weapon;
-        this.player = player;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 
     public Weapon getWeapon() {
