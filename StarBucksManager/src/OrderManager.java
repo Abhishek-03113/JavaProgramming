@@ -6,6 +6,7 @@ import java.util.Map;
 public class OrderManager {
 
     static double avgOrderValue = 0;
+    public int mostPopularItemCount = 0;
     private final List<Order> orders = new ArrayList<>();
 
     public void placeOrder(Order order) {
@@ -25,19 +26,35 @@ public class OrderManager {
         int mostPopularItemCount = 0;
 
 
+        Map.Entry<Item, Integer> mostPopularEntry =  orders.stream()
+                .flatMap(order -> order.getItems().entrySet().stream())
+                .max(Map.Entry.comparingByValue())
+                .orElse(null);
 
 
-        for (Order order : orders) {
-            Map<Item, Integer> items = order.getItems();
-            for (Item item : items.keySet()) {
-                if (mostPopularItemCount <= items.get(item) ) {
-                    mostPopularItem = item;
-                    mostPopularItemCount = items.get(item);
-                }
-            }
+        if (mostPopularEntry != null) {
+            mostPopularItem = mostPopularEntry.getKey();
+            mostPopularItemCount = mostPopularEntry.getValue();
 
         }
+        this.mostPopularItemCount = mostPopularItemCount;
+
+//
+//        for (Order order : orders) {
+//            Map<Item, Integer> items = order.getItems();
+//            for (Item item : items.keySet()) {
+//                if (mostPopularItemCount <= items.get(item) ) {
+//                    mostPopularItem = item;
+//                    mostPopularItemCount = items.get(item);
+//                }
+//            }
+//
+//        }
         return mostPopularItem;
+    }
+
+    int getMostPopularItemCount() {
+        return mostPopularItemCount;
     }
 
 }

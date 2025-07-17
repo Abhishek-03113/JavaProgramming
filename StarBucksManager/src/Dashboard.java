@@ -26,12 +26,15 @@ public class Dashboard {
         OrderManager orderManager = new OrderManager();
         orderManager.placeOrder(o1);
         orderManager.placeOrder(o2);
+        orderManager.placeOrder(o3);
 
         System.out.println("==================== STARBUCKS STORE DASHBOARD ====================");
         System.out.println("Total Revenue : " + orderManager.calculateRevenue());
         System.out.println("Average Order Value : " + OrderManager.avgOrderValue);
         System.out.println("Total Vegetarian Items Ordered : " + Item.vegCounter);
-        System.out.println("The Most Popular Item is : " + orderManager.mostPopularItem().getName());
+        System.out.println("The Most Popular Item is : " + orderManager.mostPopularItem().getName() + "  The Amount of Item ordered : " + orderManager.getMostPopularItemCount());
 
     }
+
+
 }
