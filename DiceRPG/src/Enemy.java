@@ -1,84 +1,37 @@
 public class Enemy {
     private String enemyName;
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    private int health;
     private int enemyLevel;
-    private int attack;
-    private int defense;
-    private int power;
-    private int speed;
+    private int experienceDrop;
 
-    public Enemy(String enemyName, int enemyLevel) {
+    public Enemy(String enemyName){
+        this.enemyName = enemyName;
+        this.enemyLevel = 5;
+        this.experienceDrop = 50;
+    }
+    public Enemy(String enemyName, int enemyLevel){
         this.enemyName = enemyName;
         this.enemyLevel = enemyLevel;
     }
 
-    public String getEnemyName() {
-        return enemyName;
-    }
-
-    public void setEnemyName(String enemyName) {
-        this.enemyName = enemyName;
-    }
-
-    public int getEnemyLevel() {
-        return enemyLevel;
-    }
-
-    public void setEnemyLevel(int enemyLevel) {
+    public Enemy(String enemyName, int enemyLevel, int experienceDrop){
         this.enemyLevel = enemyLevel;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public void setAttack(int attack) {
-        this.attack = attack;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
+        this.experienceDrop = experienceDrop;
+        this.enemyName = enemyName;
     }
 }
 
 
+public class Zombie extends Enemy{
+    private int health = 100;
+    private int damage = 25;
+    private int experienceDrop = 100;
 
-class Zombie extends Enemy{
-    public Zombie(String enemyName, int enemyLevel) {
+    public Zombie(String enemyName, int enemyLevel){
         super(enemyName, enemyLevel);
-        this.setAttack(10);
-        this.setDefense(20);
-        this.setPower(10);
-        this.setSpeed(5);
-        this.setHealth(20);
+    }
+
+    public void slash(Hero hero){
+
+        hero.setHealth(hero.getHealth()- this.damage);
     }
 }
