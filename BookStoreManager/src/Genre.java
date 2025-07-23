@@ -1,0 +1,7 @@
+public enum Genre {
+    HORROR,
+    MYSTERY,
+    FICTIONAL,
+    HISTORICAL,
+    NONFICTIONAL, FANTASY, SCIENCE_FICTION, FICTION,
+}

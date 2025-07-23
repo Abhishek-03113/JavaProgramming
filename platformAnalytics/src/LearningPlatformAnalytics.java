@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LearningPlatformAnalytics {
@@ -43,13 +44,32 @@ public class LearningPlatformAnalytics {
 
         // TODO: Category-wise Course Count and Duration
 
-        enrollments.stream().
+        System.out.println(enrollments.stream().collect(Collectors.groupingBy(enrollment -> enrollment.getCourse().getCategory(), Collectors.counting())));
+        System.out.println(enrollments.stream().collect(Collectors.groupingBy(enrollment -> enrollment.getCourse().getCategory(), Collectors.summingDouble(enrollment->enrollment.getCourse().getDurationMinutes()))));
 
         // TODO: Most Reviewed Course per Category
 
+        System.out.println(enrollments.stream().filter(enrollment -> enrollment.getReview()!=null)
+                .collect(Collectors.groupingBy(
+                        e->e.getCourse().getCategory(),
+                        Collectors.collectingAndThen(
+                                Collectors.groupingBy(
+                                        Enrollment::getCourse, Collectors.counting()),
+                                countMap -> countMap.entrySet().stream()
+                                        .max(Map.Entry.comparingByValue())
+                                        .map(Map.Entry::getKey)
+                                )
+                        )
+                ));
+
         // TODO: Courses with Median Completion Rate
 
+        Map<Course, List<Double>>maps = enrollments.stream().collect(Collectors.groupingBy(Enrollment::getCourse, Collectors.mapping(Enrollment::getAvgProgress, Collectors.toList())));
+
+        System.out.println(maps);
+
         // TODO: Students Who Rated Below 2.0
+        enrollments.stream().filter(enrollment -> enrollment.getReview()!=null).filter(enrollment -> enrollment.getReview().getRating() < 2.0).map(Enrollment::getStudent).forEach(System.out::println);
 
         // TODO: Courses with >=50% Completion by >=75% Students
 
