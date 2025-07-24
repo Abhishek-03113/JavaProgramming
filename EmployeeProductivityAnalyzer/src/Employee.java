@@ -40,28 +40,28 @@ public class Employee {
         this.productivityScore = productivityScore;
     }
 
-    public Employee(String name, Department department, int[] productivityScore) {
+    public Employee(String name, Department department, int[] productivityScore) throws Exception {
         this.name = name;
         this.department = department;
         this.productivityScore = productivityScore;
-        this.averageScores = 0;
+        validateInputs();
+        this.averageScores = calculateAverageScore();
     }
 
-    public void calculateAverageScore() {
-        this.averageScores = Arrays.stream(productivityScore).mapToDouble(e -> e).average().getAsDouble();
+    public double calculateAverageScore() {
+        return  this.averageScores = Arrays.stream(productivityScore).mapToDouble(e -> e).average().getAsDouble();
     }
 
-    public void validateInputs(String name, Department department, int[] productivityScore) throws Exception {
+    public void validateInputs() throws Exception {
         if (name.isEmpty()) {
             throw new Exception("Invalid Name");
-        } else if (name.isEmpty()) {
-            throw new Exception("Invlid Department Name");
-        } else {
-            for (int i = 0; i < productivityScore.length; i++) {
-                if (productivityScore[i] < 0 || productivityScore[i] > 100) {
-                    throw new InvalidScoreException();
-                }
+        }
+        else {
+        for (int j : productivityScore) {
+            if (j < 0 || j > 100) {
+                throw new InvalidScoreException();
             }
+        }
         }
     }
 }
