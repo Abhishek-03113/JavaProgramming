@@ -29,7 +29,22 @@ public class DepartmentSummary {
 
     public void departmentPerformanceGrades(List<Employee> employees) {
 
-        System.out.println(employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.averagingDouble(emp -> emp.getAverageScores()))));
+        Map<Department, Double> map = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.averagingDouble(Employee::getAverageScores)));
+
+        map.forEach((department, averageScores) -> {
+            if (averageScores >= 85) {
+                System.out.println(department + " A");
+            }
+            else if (averageScores >= 70) {
+                System.out.println(department + " B");
+            }
+            else if (averageScores >= 50) {
+                System.out.println(department + " C");
+            }
+            else{
+                System.out.println(department + " D");
+            }
+        });
 
 
     }
@@ -57,7 +72,7 @@ public class DepartmentSummary {
     }
 
     public void sortedEmployeeLeaderboard(List<Employee> employees) {
-        employees.stream().sorted(Comparator.comparing(Employee::getAverageScores)).forEach(e-> System.out.println(e.getName()));
+        employees.stream().sorted(Comparator.comparing(Employee::getAverageScores)).forEach(e-> System.out.println(e.getName() +" "+ e.getAverageScores()));
 
     }
 
@@ -85,10 +100,15 @@ public class DepartmentSummary {
             departmentSummary.scoreDistributionBuckets(employees);//working
             departmentSummary.detectDecliningWeeklyPerformance(employees); // working
             departmentSummary.departmentPerformanceGrades(employees); //working
+
+
         }
         else{
             System.out.println("Exception found");
         }
+
+
+
 
 
     }

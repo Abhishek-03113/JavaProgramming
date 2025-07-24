@@ -1,69 +1,157 @@
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamPractice {
 
     public static void main(String[] args) {
-
-
-        List<Integer> participantScore = Arrays.asList(111, 222, 113, 411, 51, 336, 71, 81, 91, 100, 1020);
-        List<Integer> participantScore2 = Arrays.asList(133, 233, 355, 466, 55, 64, 73, 82, 91, 100);
-        List<Integer> participantScore3 = Arrays.asList(11, 22, 33, 44, 55, 66, 47, 38, 93, 1003);
-
-
-        Participant p1 = new Participant("Alice", "computer", participantScore);
-        Participant p2 = new Participant("John", "aids", participantScore2);
-        Participant p3 = new Participant("Bob", "computer", participantScore3);
-
-        List<Participant> participants = new ArrayList<>(Arrays.asList(p1, p2, p3));
-
-        Collections.sort(participants);
-
-        participants.forEach(participant -> System.out.println(participant.getName()));
-
-        double average = participantScore.stream().collect(Collectors.averagingInt(Integer::intValue));
-
-
-        System.out.println(average);
-
-
-        participantScore.stream().max(Integer::compareTo).ifPresent(System.out::println);
-
-        participants.sort(Comparator.comparing((Participant p) -> p.departmentName).thenComparingInt(p -> p.id));
-
-        List<Participant> topKParticpiants = participants.stream().sorted(Comparator.comparing((Participant p) -> p.averageScore).reversed()).limit(1).toList();
-
-        System.out.println(topKParticpiants);
-
-
-        Map<String, Double> departmentWiseScores = participants.stream().collect(Collectors.groupingBy(Participant::getDepartmentName, Collectors.averagingDouble(Participant::getAverageScore)));
-
-
-        List<Double> normalizedScores = participants.stream().flatMap(participant -> participant.getScores().stream()).collect(Collectors.collectingAndThen(Collectors.toList(), scores -> {
-            int max = scores.stream().max(Integer::compareTo).orElse(0);
-            return scores.stream().map(s -> (s * 100.0) / max).collect(Collectors.toList());
-        }));
-
-
-        List<String> sortedNames = participants.stream().map(Participant::getName).distinct().sorted(Comparator.naturalOrder()).toList();
-
-
-        Map<String, List<Participant>> groupedByDepartment = participants.stream().collect(Collectors.groupingBy(Participant::getDepartmentName));
-
-        List<Participant> winningParticipant = participants.stream().filter(participant -> participant.getScores().stream().allMatch(score -> score >= 40)).toList();
-        List<Participant> perfectScorePeople = participants.stream().filter(participant -> participant.getScores().stream().anyMatch(score -> score == Participant.maxScore)).toList();
-
-        Map<String, Long> failingPeople = participants.stream().filter(participant -> participant.getScores().stream().anyMatch(score -> score < 40)).collect(Collectors.groupingBy(Participant::getDepartmentName, Collectors.counting()));
-        System.out.println(groupedByDepartment);
-        System.out.println("Winning people" + winningParticipant);
-        System.out.println("Perfect score people" + perfectScorePeople);
-        System.out.println("Failing People : " + failingPeople);
-        System.out.println(sortedNames);
-        System.out.println(normalizedScores);
-        System.out.println(departmentWiseScores.entrySet());
-
-
+        countWordsStartingWithVowel();
+        sumSquareOfOdds();
+        mostFrequentCharacter();
+        groupNamesByInitial();
+        averagePriceOfCategory();
+        customMinTransaction();
+        flattenAndDeduplicateTags();
+        productOfEvenIndexedNumbers();
+        mergeMapValuesByKey();
+        groupBooksByPriceRange();
     }
 
+    // 1. Count words starting with vowel
+    static void countWordsStartingWithVowel() {
+        List<String> words = Arrays.asList("Apple", "banana", "orange", "Avocado", "mango", "elephant");
+        // TODO: Use streams and filter/lambda to count words starting with a vowel (case-insensitive)
 
+        Set<Character> vowels = new HashSet<>(Set.of('a', 'e', 'i', 'o', 'u'));
+
+        words.stream().filter(word -> {
+            return vowels.contains(word.charAt(0));
+        }).toList().forEach(System.out::println);
+    }
+
+    // 2. Sum of squares of odd numbers
+    static void sumSquareOfOdds() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        // TODO: Use filter, map, and reduce to get sum of squares of odd numbers
+        numbers.stream().filter(number -> number % 2 == 1).mapToInt(n -> n * n).reduce(Integer::sum).ifPresent(System.out::println);
+    }
+
+    // 3. Most frequent character in a string
+    static void mostFrequentCharacter() {
+        String input = "aabbbccdeeee";
+        input.chars().mapToObj(chars -> (char) chars).collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().reduce((c1, c2) -> c1.getValue() >= c2.getValue() ? c1 : c2).ifPresent(System.out::println);
+        // TODO: Use stream and reduce to find most frequent character
+    }
+
+    // 4. Group names by starting letter
+    static void groupNamesByInitial() {
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Amanda", "Brian");
+        // TODO: Use streams to group names by their first character
+    }
+
+    // 5. Average price of books in a category
+    static void averagePriceOfCategory() {
+        List<Book> books = Arrays.asList(
+                new Book("Java", 300, "Tech"),
+                new Book("Python", 250, "Tech"),
+                new Book("Biology", 180, "Science"),
+                new Book("Physics", 210, "Science"),
+                new Book("Spring Boot", 350, "Tech")
+        );
+        // TODO: Calculate average price of books in category = "Tech"
+    }
+
+    // 6. Custom reduce: Find Transaction with smallest amount
+    static void customMinTransaction() {
+        List<Transaction> txns = Arrays.asList(
+                new Transaction(400),
+                new Transaction(100),
+                new Transaction(250)
+        );
+
+        txns.stream().reduce((t1,t2) -> t1.amount <  t2.amount ? t1 : t2).ifPresent(System.out::println);
+
+        // TODO: Use reduce to find Transaction with smallest amount
+    }
+
+    // 7. Flatten list of tag lists and remove duplicates
+    static void flattenAndDeduplicateTags() {
+        List<List<String>> tagLists = Arrays.asList(
+                Arrays.asList("java", "streams", "lambda"),
+                Arrays.asList("java", "concurrency"),
+                Arrays.asList("streams", "performance")
+        );
+
+        tagLists.stream().flatMap(Collection::stream).collect(Collectors.toSet()).forEach(System.out::println);
+        // TODO: Flatten and remove duplicate tags
+    }
+
+    // 8. Product of even-indexed elements
+    static void productOfEvenIndexedNumbers() {
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 5, 6, 7);
+        // TODO: Multiply only elements at even indices (0, 2, 4...)
+
+        numbers.stream().filter(n -> numbers.indexOf(n) % 2 == 0).reduce((x, y) -> x * y).ifPresent(System.out::println);
+    }
+
+    // 9. Merge maps with summing values
+    static void mergeMapValuesByKey() {
+        List<Map<String, Integer>> maps = Arrays.asList(
+                Map.of("A", 10, "B", 20),
+                Map.of("A", 5, "C", 15),
+                Map.of("B", 10, "C", 5)
+        );
+
+
+//        maps.stream().flatMap(Map.Entry::getKey).collect(Collectors.groupingBy(e ->e , Collectors.mapping()));
+        // TODO: Merge into one map with values summed
+    }
+
+    // 10. Group books by price range
+    static void groupBooksByPriceRange() {
+        List<Book> books = Arrays.asList(
+                new Book("Clean Code", 500, "Tech"),
+                new Book("Effective Java", 700, "Tech"),
+                new Book("DSA", 200, "Tech"),
+                new Book("Algorithms", 300, "Tech"),
+                new Book("Design Patterns", 800, "Tech")
+        );
+
+        System.out.println(books.stream().collect(Collectors.groupingBy(book -> {
+            if(book.price >= 500) {return "500 - 1000";} else  {return "100 - 500";}
+        }, Collectors.mapping(book -> book.title, Collectors.toList()))));
+        // TODO: Group books into price brackets: "<300", "300-600", ">600"
+    }
+
+    // ======= Helper Classes =======
+
+    static class Book {
+        String title;
+        double price;
+        String category;
+
+        Book(String title, double price, String category) {
+            this.title = title;
+            this.price = price;
+            this.category = category;
+        }
+
+        @Override
+        public String toString() {
+            return title + " ($" + price + ") - " + category;
+        }
+    }
+
+    static class Transaction {
+        double amount;
+
+        Transaction(double amount) {
+            this.amount = amount;
+        }
+
+        @Override
+        public String toString() {
+            return "₹" + amount;
+        }
+    }
 }
