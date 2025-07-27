@@ -1,26 +1,30 @@
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Rider extends User {
-    private int riderId;
-    private double averageRating;
-    private List<Ride> rideHistory;
+    private List<RideRequest> rideRequests;
+    private List<Ride> rides;
 
-    public Rider(String name, Optional<String> email, List<Integer> rating, int riderId) {
-        super(name, email, rating);
-        this.riderId = riderId;
-        this.averageRating = rating.stream().collect(Collectors.averagingDouble(e -> e));
-        this.rideHistory = new ArrayList<>();
+    public Rider(int id, String name, Optional<String> email) {
+        super(id, name, email);
+        rideRequests = new ArrayList<>();
+        rides = new ArrayList<>();
     }
 
-    public void requestRide(String rideId, String destination, Vehicle vehicleType) {
-        RideManager.requestedRides.add(new Ride(rideId, destination, this, null, 0.0));
-
+    public void requestRide(String destination, Vehicle vehicle) {
+        rideRequests.add(new RideRequest(this, "", destination, vehicle));
     }
 
-    public void giveRating(Ride ride, Optional<Integer> rating) {
-        ride.getDriver().getRatings().add(rating.orElse(3));
-        ride.getDriver().updateRatings();
+    public void addRide(Ride ride) {
+        rides.add(ride);
     }
 
+    public List<Ride> getRides() {
+        return rides;
+    }
+
+    public List<RideRequest> getRideRequests() {
+        return rideRequests;
+    }
 }

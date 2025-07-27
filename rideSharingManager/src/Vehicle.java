@@ -1,6 +1,6 @@
 public enum Vehicle {
-    SEDAN,
     SUV,
-    BIKE
-
+    BIKE,
+    SEDAN,
+    AUTO
 }
