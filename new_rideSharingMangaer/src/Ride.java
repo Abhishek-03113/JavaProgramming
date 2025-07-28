@@ -23,10 +23,7 @@ public class Ride {
     public RideStatus getStatus() { return status; }
     public int getRating() { return rating; }
 
-    public void setRideId(String rideId) { this.rideId = rideId; }
-    public void setRider(Rider rider) { this.rider = rider; }
     public void setDriver(Driver driver) { this.driver = driver; }
-    public void setRideRequest(RideRequest rideRequest) { this.rideRequest = rideRequest; }
     public void setStatus(RideStatus status) { this.status = status; }
     public void setRating(int rating) { this.rating = rating; }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BookStoreManager/BookStoreManager.iml" filepath="$PROJECT_DIR$/BookStoreManager/BookStoreManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BoxService/BoxService.iml" filepath="$PROJECT_DIR$/BoxService/BoxService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiceRPG/DiceRPG.iml" filepath="$PROJECT_DIR$/DiceRPG/DiceRPG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EdtechDataPipeLine/EdtechDataPipeLine.iml" filepath="$PROJECT_DIR$/EdtechDataPipeLine/EdtechDataPipeLine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeProductivityAnalyzer/EmployeeProductivityAnalyzer.iml" filepath="$PROJECT_DIR$/EmployeeProductivityAnalyzer/EmployeeProductivityAnalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProjects.iml" filepath="$PROJECT_DIR$/.idea/IdeaProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaProgramming/JavaProgramming.iml" filepath="$PROJECT_DIR$/JavaProgramming/JavaProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ObjectOriented/ObjectOriented.iml" filepath="$PROJECT_DIR$/ObjectOriented/ObjectOriented.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practice/Practice.iml" filepath="$PROJECT_DIR$/Practice/Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecipeManager/RecipeManager.iml" filepath="$PROJECT_DIR$/RecipeManager/RecipeManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StarBucksManager/StarBucksManager.iml" filepath="$PROJECT_DIR$/StarBucksManager/StarBucksManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TransportManager/TransportManager.iml" filepath="$PROJECT_DIR$/TransportManager/TransportManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Twitter/Twitter.iml" filepath="$PROJECT_DIR$/Twitter/Twitter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/new_rideSharingMangaer/new_rideSharingMangaer.iml" filepath="$PROJECT_DIR$/new_rideSharingMangaer/new_rideSharingMangaer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platformAnalytics/platformAnalytics.iml" filepath="$PROJECT_DIR$/platformAnalytics/platformAnalytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rideSharingManager/rideSharingManager.iml" filepath="$PROJECT_DIR$/rideSharingManager/rideSharingManager.iml" />
+    </modules>
+  </component>
+</project>

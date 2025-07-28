@@ -25,7 +25,7 @@ public class RideManager {
     public void registerRider(String name, Optional<String> email) {
         Rider rider = new Rider(riderIdCounter++, name, email);
         riders.add(rider);
-        String emailDisplay = email.isPresent() ? email.get() : "Not Provided";
+        String emailDisplay = email.orElse("Not Provided");
         System.out.printf("Rider Registered: %s [Email: %s]%n", name, emailDisplay);
     }
 
@@ -49,7 +49,7 @@ public class RideManager {
 
         RideRequest rideRequest = new RideRequest(rider, origin, destination, vehicleType);
         
-        boolean driverAccepts = simulateDriverResponse(availableDriver.getName());
+        boolean driverAccepts = driverAccepts(availableDriver.getName());
         
         if (driverAccepts) {
             System.out.printf("Driver %s accepted the ride%n", availableDriver.getName());
@@ -76,7 +76,7 @@ public class RideManager {
         System.out.println();
     }
 
-    private boolean simulateDriverResponse(String driverName) {
+    private boolean driverAccepts(String driverName) {
         return !driverName.equals("Bob");
     }
 
@@ -135,13 +135,9 @@ public class RideManager {
         System.out.printf("✅ Total Rides Cancelled: %d%n", cancelledRides);
         System.out.println();
 
-        Driver topDriver = drivers.stream()
-                .max(Comparator.comparing(Driver::getAverageRating))
-                .orElse(null);
-        
-        if (topDriver != null) {
-            System.out.printf("Top Rated Driver: %s (%.1f stars)%n", topDriver.getName(), topDriver.getAverageRating());
-        }
+        drivers.stream()
+                .max(Comparator.comparing(Driver::getAverageRating)).ifPresent(topDriver -> System.out.printf("Top Rated Driver: %s (%.1f stars)%n", topDriver.getName(), topDriver.getAverageRating()));
+
         System.out.println();
 
         // Ride history for each rider
@@ -205,13 +201,13 @@ public class RideManager {
         System.out.println();
     }
 
-    public void demonstrateOptionalHandling() {
+    public void optionals() {
         System.out.println("--- Optional Handling Demo ---");
         Rider john = findRiderByName("John");
         if (john != null) {
             System.out.println("Searching for email of Rider John...");
             Optional<String> email = john.getEmailOptional();
-            System.out.println("Result: " + (email.isPresent() ? email.get() : "Email not provided"));
+            System.out.println("Result: " + (email.orElse("Email not provided")));
         }
         
         System.out.println();

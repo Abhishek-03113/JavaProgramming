@@ -22,13 +22,13 @@ public class Main {
         rideManager.processRideRequest("Emma", Vehicle.SEDAN, "Airport", "City Center");
         rideManager.processRideRequest("John", Vehicle.BIKE, "Tech Park", "University");
         rideManager.processRideRequest("Emma", Vehicle.SUV, "Museum", "Hotel Grand");
-        
+
         System.out.println("--- Invalid Operation Simulation ---");
         rideManager.lookupDriver("d999");
         
         rideManager.generateReport();
         rideManager.performDataQueries();
-        rideManager.demonstrateOptionalHandling();
+        rideManager.optionals();
         
         System.out.println("--- Simulation Complete ---");
     }
