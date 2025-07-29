@@ -1,12 +1,20 @@
 public class FareCalculation {
 
+
     public static double calculateDefaultFare(Vehicle vehicle) {
-        return switch (vehicle) {
-            case BIKE -> 10.0;
-            case SEDAN -> 30.0;
-            case AUTO -> 15.0;
-            case SUV -> 40.0;
-            case null, default -> 0.0;
-        };
+        return vehicle.getCost() * 5; 
     }
+
+    public static double calculateFare(Vehicle vehicle, int distance) {
+        return vehicle.getCost() * distance;
+    }
+
+    public static double calculateFare(Vehicle vehicle, int distance, double surgeMultiplier) {
+        return calculateFare(vehicle, distance) * surgeMultiplier;
+    }
+
+    public static double calculateFare(Vehicle vehicle, int distance, double surgeMultiplier, double discount) {
+        return calculateFare(vehicle, distance, surgeMultiplier) * (1 - discount);
+    }
+
 }

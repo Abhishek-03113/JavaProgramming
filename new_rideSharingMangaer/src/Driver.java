@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import Exceptions.InsufficientBalanceException;
+
 public class Driver extends User {
     private final List<Ride> rides;
     private final Vehicle vehicle;
@@ -47,11 +49,21 @@ public class Driver extends User {
             assignedRide.setStatus(RideStatus.CANCELLED);
             assignedRide.getRider().addRide(assignedRide);
             System.out.println("Ride request cancelled");
+            isAvailable = true;
+            assignedRide = null;
         }
     }
 
-    public void completeRide() {
+    public void completeRide() throws InsufficientBalanceException {
+
+        if (assignedRide == null) {
+            System.out.println("No ride assigned to complete.");
+            return;
+        }
         assignedRide.setStatus(RideStatus.COMPLETED);
         assignedRide.getRider().addRide(assignedRide);
+        assignedRide.getRider().getWallet().deductFare(this, assignedRide.getRideFare());
+        isAvailable = true;
+        assignedRide = null;
     }
 }

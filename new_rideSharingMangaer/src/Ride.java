@@ -1,29 +1,77 @@
+import java.util.UUID;
+
 public class Ride {
-    public static int rideCounter = 100;
     private String rideId;
     private Rider rider;
     private Driver driver;
-    private RideRequest rideRequest;
+    private String destination;
+    private Vehicle vehicleType;
+    private double rideFare;
     private RideStatus status;
-    private int rating;
+    private int riderRating;
+    private int driverRating;
 
-    public Ride(Rider rider, Driver driver, RideRequest rideRequest) {
-        this.rideId = "RIDE" + (rideCounter + 1);
+    public Ride(Rider rider, Driver driver, String destination, Vehicle vehicleType) {
+        this.rideId = "RIDE-" + UUID.randomUUID().toString().substring(0, 8);
         this.rider = rider;
         this.driver = driver;
-        this.rideRequest = rideRequest;
+        this.destination = destination;
+        this.vehicleType = vehicleType;
+        this.rideFare = FareCalculation.calculateDefaultFare(vehicleType);
         this.status = RideStatus.REQUESTED;
-        rideCounter++;
+        this.riderRating = 0;
+        this.driverRating = 0;
     }
 
-    public String getRideId() { return rideId; }
-    public Rider getRider() { return rider; }
-    public Driver getDriver() { return driver; }
-    public RideRequest getRideRequest() { return rideRequest; }
-    public RideStatus getStatus() { return status; }
-    public int getRating() { return rating; }
+    public String getRideId() {
+        return rideId;
+    }
 
-    public void setDriver(Driver driver) { this.driver = driver; }
-    public void setStatus(RideStatus status) { this.status = status; }
-    public void setRating(int rating) { this.rating = rating; }
+    public Rider getRider() {
+        return rider;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public Vehicle getVehicleType() {
+        return vehicleType;
+    }
+
+    public double getRideFare() {
+        return rideFare;
+    }
+
+    public RideStatus getStatus() {
+        return status;
+    }
+
+    public int getRiderRating() {
+        return riderRating;
+    }
+
+    public int getDriverRating() {
+        return driverRating;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public void setStatus(RideStatus status) {
+        this.status = status;
+    }
+
+    public void setRiderRating(int riderRating) {
+        this.riderRating = riderRating;
+    }
+
+    public void setDriverRating(int driverRating) {
+        this.driverRating = driverRating;
+    }
 }
