@@ -2,7 +2,7 @@ public class FareCalculation {
 
 
     public static double calculateDefaultFare(Vehicle vehicle) {
-        return vehicle.getCost() * 5; 
+        return vehicle.getCost() * 5;
     }
 
     public static double calculateFare(Vehicle vehicle, int distance) {

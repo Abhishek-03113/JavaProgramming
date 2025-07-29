@@ -1,12 +1,12 @@
 import java.util.UUID;
 
 public class Ride {
-    private String rideId;
-    private Rider rider;
+    private final String rideId;
+    private final Rider rider;
     private Driver driver;
-    private String destination;
-    private Vehicle vehicleType;
-    private double rideFare;
+    private final String destination;
+    private final Vehicle vehicleType;
+    private final double rideFare;
     private RideStatus status;
     private int riderRating;
     private int driverRating;

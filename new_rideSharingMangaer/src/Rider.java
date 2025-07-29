@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Rider extends User {
-    private List<Ride> rides;
+    private final List<Ride> rides;
 
     public Rider(int id, String name, Optional<String> email) {
         super(id, name, email);

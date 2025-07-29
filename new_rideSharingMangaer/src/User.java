@@ -4,11 +4,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class User {
-    private int id;
+    private final int id;
     private final String name;
     private final List<Integer> ratings;
     private double averageRating;
-    private Wallet wallet;
+    private final Wallet wallet;
 
     public User(int id, String name, Optional<String> email) {
         this.id = id;

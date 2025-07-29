@@ -4,9 +4,9 @@ import Exceptions.InsufficientBalanceException;
 import Exceptions.NoAvailableDriverException;
 
 public class RideManager {
-    private List<Driver> drivers;
-    private List<Ride> rides;
-    private List<Rider> riders;
+    private final List<Driver> drivers;
+    private final List<Ride> rides;
+    private final List<Rider> riders;
     private int driverIdCounter = 1;
     private int riderIdCounter = 1;
 
