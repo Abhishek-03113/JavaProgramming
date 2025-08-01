@@ -91,4 +91,8 @@ public class Server {
 
     }
 
+    public Map<String, ClientHandler> getClients() {
+        return clients;
+    }
+
 }
