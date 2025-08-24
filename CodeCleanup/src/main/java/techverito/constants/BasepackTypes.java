@@ -3,30 +3,30 @@ package techverito.constants;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum BasepackTypes {
 
-    SilverPack(List.of(Channels.Zee, Channels.Sony, Channels.StarPlus), 50.00),
-    GoldPack(List.of(Channels.Zee, Channels.Sony, Channels.StarPlus, Channels.Discovery, Channels.NetGeo), 100.00);
+	SilverPack(List.of(Channels.ZEE, Channels.SONY, Channels.STAR_PLUS), 50.00),
+	GoldPack(List.of(Channels.ZEE, Channels.SONY, Channels.STAR_PLUS, Channels.DISCOVERY, Channels.NAT_GEO), 100.00);
 
-    private final List<Channels> channels;
-    private final Double amount;
+	private final List<Channels> channels;
+	private final Double amount;
 
-    private BasepackTypes(List<Channels> channels, Double amount) {
-        this.channels = channels;
-        this.amount = amount;
-    }
+	private BasepackTypes(List<Channels> channels, Double amount) {
+		this.channels = channels;
+		this.amount = amount;
+	}
 
-    public List<Channels> getChannels() {
-        return channels;
-    }
+	public List<Channels> getChannels() {
+		return channels;
+	}
 
-    public Double getValue() {
-        return amount;
-    }
+	public Double getValue() {
+		return amount;
+	}
 
-    public BigDecimal calculateCost(int months) {
-        return BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(months)).setScale(2, RoundingMode.HALF_UP);
-    }
-}
+	public BigDecimal calculateCost(int months) {
+		return BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP)
+			.multiply(BigDecimal.valueOf(months)).setScale(2, RoundingMode.HALF_UP);
+	}

@@ -25,7 +25,6 @@ public class UserRequestProcessorTest {
         user = new User();
     }
 
-
     @Test
     public void processSelection1Test() {
         processor = new UserRequestProcessor(mock(InputReader.class));
@@ -69,7 +68,7 @@ public class UserRequestProcessorTest {
         processor = new UserRequestProcessor(readerMock);
         processor.processSelection4(user);
 
-        //TODO: test insufficient balance message
+        // TODO: test insufficient balance message
         assertEquals("100.0", user.getBalance());
     }
 
