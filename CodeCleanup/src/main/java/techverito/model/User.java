@@ -1,6 +1,5 @@
 package techverito.model;
 
-import techverito.constants.Messages;
 import techverito.constants.BasepackTypes;
 
 import java.math.BigDecimal;
@@ -12,19 +11,23 @@ public class User {
     private BasepackTypes currSubscription;
     private String email;
     private String phone;
-    
+
     public User() {
-        
+
     }
-    
-    public void setBalance(double value) {
-        balance = new BigDecimal(""+value);
-    }
-    
+
     public String getBalance() {
         return balance.toPlainString();
     }
-    
+
+    public void setBalance(double value) {
+        balance = new BigDecimal("" + value);
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -41,14 +44,10 @@ public class User {
         this.phone = phone;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
     public BasepackTypes getSubcription() {
         return currSubscription;
     }
-    
+
     public void setSubscription(BasepackTypes subscription) {
         this.currSubscription = subscription;
     }
