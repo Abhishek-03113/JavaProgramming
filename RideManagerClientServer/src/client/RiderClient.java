@@ -106,6 +106,12 @@ public class RiderClient {
     }
 
     private void registerRider() {
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
+
+        
     }
 
     private void listenForMessages() {
