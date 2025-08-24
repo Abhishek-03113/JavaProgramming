@@ -1,35 +1,40 @@
 package techverito.model;
 
 import techverito.constants.BasepackTypes;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Pack {
+    private BasepackTypes packType;
+    private int months;
+    private BigDecimal monthlyPrice;
+    private BigDecimal totalPrice;
 
-    String packType;
-    String monthlyPrice;
-    int months;
-
-    public String getPackType() {
-        return switch (packType) {
-            case "G" -> "Gold";
-            case "S" -> "Silver";
-            default -> "";
-        };
-    }
-
-    public void setPackType(String packType) {
+    public Pack(BasepackTypes packType, int months) {
         this.packType = packType;
+        this.months = months;
+        this.monthlyPrice = BigDecimal.valueOf(packType.getValue()).setScale(2, RoundingMode.HALF_UP);
+        calculateTotalPrice();
     }
 
-    public String getMonthlyPrice() {
-        return monthlySubscriptionPrice(getPackType());
+    private void calculateTotalPrice() {
+        this.totalPrice = packType.calculateCost(months);
     }
 
-    private String monthlySubscriptionPrice(String packType) {
-        if (getPackType().equals("Gold")) return BasepackTypes.GoldPack.getValue();
-        else if (getPackType().equals("Silver")) {
-            return BasepackTypes.SilverPack.getValue();
-        }
-        return BasepackTypes.GoldPack.getValue();
+    public String getPackTypeName() {
+        return packType.name();
+    }
+
+    public BasepackTypes getPackType() {
+        return packType;
+    }
+
+    public BigDecimal getMonthlyPrice() {
+        return monthlyPrice;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
     public int getMonths() {
@@ -38,6 +43,6 @@ public class Pack {
 
     public void setMonths(int months) {
         this.months = months;
+        calculateTotalPrice();
     }
-
 }
