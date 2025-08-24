@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 public enum BasepackTypes {
 
-	SilverPack(List.of(Channels.ZEE, Channels.SONY, Channels.STAR_PLUS), 50.00),
-	GoldPack(List.of(Channels.ZEE, Channels.SONY, Channels.STAR_PLUS, Channels.DISCOVERY, Channels.NAT_GEO), 100.00);
+	SilverPack(List.of(Channels.Zee, Channels.Sony, Channels.StarPlus), 50.00),
+	GoldPack(List.of(Channels.Zee, Channels.Sony, Channels.StarPlus, Channels.Discovery, Channels.NatGeo), 100.00);
 
 	private final List<Channels> channels;
 	private final Double amount;
@@ -29,4 +29,4 @@ public enum BasepackTypes {
 	public BigDecimal calculateCost(int months) {
 		return BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP)
 			.multiply(BigDecimal.valueOf(months)).setScale(2, RoundingMode.HALF_UP);
-	}
+	}}
