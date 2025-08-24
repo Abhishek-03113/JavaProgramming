@@ -37,7 +37,8 @@ public class Ship{
     }
 
     public void completeDelivery{
-        this.status = Status.COMPLETED;
+        this.status = Status.AVAILABLE;
+        cargoLoaded.stream().map(cargo -> cargo.setStatus(Status.COMPLETED));
     }
 
 }

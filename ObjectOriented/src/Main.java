@@ -54,16 +54,16 @@ class Audi extends Car{
 }
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        String s1 = "Hello";
+        String s2 = "World"; 
+        String s3 = s1 + " " + s2; 
 
-        Car car = new Car("SUV", "XyZ","red", 160);
 
-        car.setType("Sedan");
+        System.out.println(s3);
 
-        System.out.println(car.getType());
-        System.out.println(car.getModel());
-        System.out.println(car.getColor());
-        System.out.println(car.getMaxSpeed());
+
+
 
     }
 }
